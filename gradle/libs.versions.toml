@@ -1,7 +1,7 @@
 [versions]
 agp = "8.3.2"
 hiltAndroid = "2.51"
-hiltAndroidCompiler = "2.50"
+hiltAndroidCompiler = "2.51"
 kotlin = "1.9.22"
 coreKtx = "1.13.0"
 junit = "4.13.2"
@@ -14,6 +14,11 @@ mpandroidchartVersion = "v3.1.0"
 hilt = "2.51"
 ksp = "1.9.22-1.0.18"
 hiltExt = "1.2.0"
+navigationRuntimeKtx = "2.7.7"
+androidxHiltNavigationCompose = "1.2.0"
+lifecycleRuntimeCompose = "2.7.0"
+androidxComposeMaterial3Adaptive = "1.0.0-alpha11"
+androidxLifecycle = "2.7.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -33,6 +38,14 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigationRuntimeKtx" }
+androidx-hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "androidxHiltNavigationCompose" }
+androidx-compose-material3-adaptive-navigation = { group = "androidx.compose.material3.adaptive", name = "adaptive-navigation", version.ref = "androidxComposeMaterial3Adaptive" }
+androidx-compose-material3-adaptive = { group = "androidx.compose.material3.adaptive", name = "adaptive", version.ref = "androidxComposeMaterial3Adaptive" }
+androidx-compose-material3-adaptive-layout = { group = "androidx.compose.material3.adaptive", name = "adaptive-layout", version.ref = "androidxComposeMaterial3Adaptive" }
+androidx-compose-material3-windowSizeClass = { group = "androidx.compose.material3", name = "material3-window-size-class" }
+androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycleRuntimeCompose" }
+androidx-lifecycle-viewModelCompose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
 #PhilJay-MPAndroidChart = { module = "com.github.PhilJay:MPAndroidChart", version.ref = "mpandroidchartVersion" }
 
 [plugins]

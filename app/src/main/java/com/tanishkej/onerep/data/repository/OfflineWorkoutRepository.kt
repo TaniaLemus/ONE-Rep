@@ -11,11 +11,7 @@ class OfflineWorkoutRepository @Inject constructor(
     private val workoutDataSource: WorkoutDataSource
 ) : WorkoutRepository {
 
-    override suspend fun getWorkouts(): Flow<List<Workout>> {
-        return withContext(Dispatchers.IO) {
-            workoutDataSource.getWorkouts()
-        }
-    }
+    override fun getWorkouts(): Flow<List<Workout>> = workoutDataSource.getWorkouts()
 
     //We could scalate this app to Sync with a NetworkRepository and get the data from an API
     //Or any health service, like google health, google fit, fitbit etc...

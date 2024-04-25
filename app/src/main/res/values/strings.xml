@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">OneRep &amp; Charts</string>
+    <string name="feature_workouts_loading">Loading workouts</string>
+    <string name="feature_workouts_error">Error loading workouts</string>
 </resources>

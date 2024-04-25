@@ -16,16 +16,18 @@ private const val WORKOUT_FILE_NAME = "workoutData.txt"
 
 class WorkoutDataSource @Inject constructor(private val oneRepApplication: OneRepApplication) {
 
-    suspend fun getWorkouts(): Flow<List<Workout>> {
+    fun getWorkouts(): Flow<List<Workout>> {
         return flow {
             val listOfWorkouts = mutableListOf<Workout>()
             try {
                 oneRepApplication.assets.open(WORKOUT_FILE_NAME).bufferedReader()
                     .use { fileContent ->
+                        var id = 1
                         fileContent.forEachLine { lineContent ->
-                            getWorkout(lineContent)?.let { workout ->
+                            getWorkout(id, lineContent)?.let { workout ->
                                 listOfWorkouts.add(workout)
                             }
+                            id++
                         }
                     }
                 emit(listOfWorkouts)
@@ -36,7 +38,7 @@ class WorkoutDataSource @Inject constructor(private val oneRepApplication: OneRe
         }
     }
 
-    private fun getWorkout(line: String): Workout? {
+    private fun getWorkout(id: Int, line: String): Workout? {
         var date: Date? = null
         var workoutType = ""
         var reps: Int = -1
@@ -58,7 +60,7 @@ class WorkoutDataSource @Inject constructor(private val oneRepApplication: OneRe
             reps > -1 &&
             weightInLBS > -1
         ) {
-            Workout(date!!, workoutType, reps, weightInLBS)
+            Workout(id, date!!, workoutType, reps, weightInLBS)
         } else {
             Log.i(
                 TAG,
