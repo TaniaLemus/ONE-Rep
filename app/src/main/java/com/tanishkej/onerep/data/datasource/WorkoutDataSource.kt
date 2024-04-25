@@ -1,24 +1,23 @@
-package com.tanishkej.onerep.data.util
+package com.tanishkej.onerep.data.datasource
 
 import android.util.Log
 import com.tanishkej.onerep.OneRepApplication
 import com.tanishkej.onerep.data.model.Workout
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.Locale
 import javax.inject.Inject
-import kotlin.coroutines.resume
 
 private const val TAG = "WorkoutFileReader"
 private const val WORKOUT_FILE_NAME = "workoutData.txt"
 
-class WorkoutFileReader @Inject constructor(private val oneRepApplication: OneRepApplication) {
+class WorkoutDataSource @Inject constructor(private val oneRepApplication: OneRepApplication) {
 
-    suspend fun getWorkouts(): List<Workout>? {
-        return suspendCancellableCoroutine { coroutine ->
+    suspend fun getWorkouts(): Flow<List<Workout>> {
+        return flow {
             val listOfWorkouts = mutableListOf<Workout>()
             try {
                 oneRepApplication.assets.open(WORKOUT_FILE_NAME).bufferedReader()
@@ -29,10 +28,10 @@ class WorkoutFileReader @Inject constructor(private val oneRepApplication: OneRe
                             }
                         }
                     }
-                coroutine.resume(listOfWorkouts)
+                emit(listOfWorkouts)
             } catch (ex: Exception) {
                 Log.i(TAG, "The file does not exists or the format or cannot be read.")
-                coroutine.resume(null)
+                emit(emptyList())
             }
         }
     }
