@@ -6,8 +6,10 @@ import com.tanishkej.onerep.data.model.Workout
 import com.tanishkej.onerep.data.model.WorkoutGroups
 import com.tanishkej.onerep.data.util.WorkoutUtil.getGroupedWorkOuts
 import com.tanishkej.onerep.data.util.WorkoutUtil.getOneRep
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -30,6 +32,7 @@ class WorkoutDataSource @Inject constructor(
 
     fun getWorkouts(): Flow<List<WorkoutGroups>> {
         return flow {
+
             if (groupedWorkOutsCache.isNotEmpty()) {
                 emit(groupedWorkOutsCache)
             } else {
@@ -52,7 +55,7 @@ class WorkoutDataSource @Inject constructor(
                     emit(emptyList())
                 }
             }
-        }
+        }.flowOn(Dispatchers.IO)
     }
 
     private fun getWorkout(id: Int, line: String): Workout? {
