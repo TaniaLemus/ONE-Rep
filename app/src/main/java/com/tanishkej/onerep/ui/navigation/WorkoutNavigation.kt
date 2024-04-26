@@ -7,7 +7,7 @@ import androidx.navigation.NavOptionsBuilder
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.tanishkej.onerep.ui.workouts.WorkoutRoute
+import com.tanishkej.onerep.ui.workouts.screens.WorkoutRoute
 import java.net.URLDecoder
 
 const val WORKOUT_ID_ARG = "workoutId"

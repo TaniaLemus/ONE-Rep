@@ -7,8 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.rememberNavController
 import com.tanishkej.onerep.ui.theme.OneRepTheme
-import com.tanishkej.onerep.ui.workouts.WorkoutListDetailPane
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,11 +18,13 @@ class MainActivity : ComponentActivity() {
         setContent {
             OneRepTheme {
                 // A surface container using the 'background' color from the theme
+                val modifier = Modifier.fillMaxSize()
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = modifier,
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    WorkoutListDetailPane()
+                    val appState = rememberNavController()
+                    OneRepApp(appState, modifier)
                 }
             }
         }

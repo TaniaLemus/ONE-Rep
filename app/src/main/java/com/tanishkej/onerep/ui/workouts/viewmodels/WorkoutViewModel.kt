@@ -1,4 +1,4 @@
-package com.tanishkej.onerep.ui.workouts
+package com.tanishkej.onerep.ui.workouts.viewmodels
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -22,12 +22,12 @@ class WorkoutViewModel @Inject constructor(
     workoutRepository: WorkoutRepository
 ) : ViewModel() {
 
-    //private val workoutArgs: WorkoutArgs = WorkoutArgs(savedStateHandle)
+    private val workoutArgs: WorkoutArgs = WorkoutArgs(savedStateHandle)
 
     /***
      * Not implemented yet, but we could use Universal Linking Nav to go straight to a Workout.
      */
-    val workoutId = "Back Squat"//workoutArgs.workoutId
+    val workoutId = workoutArgs.workoutId
 
     val workoutUiState: StateFlow<WorkoutUiState> = workoutsUiState(
         workoutRepository
