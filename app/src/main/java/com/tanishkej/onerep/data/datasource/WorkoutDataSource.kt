@@ -20,25 +20,37 @@ private const val WORKOUT_FILE_NAME = "workoutData.txt"
 class WorkoutDataSource @Inject constructor(
     private val oneRepApplication: OneRepApplication,
 ) {
+    /***
+     * Since the asset is static store the data here, so we do not need to reload it all the time.
+     * There is a better way to do this having room whit ADO.
+     */
+    companion object {
+        private var groupedWorkOutsCache: List<WorkoutGroups> = listOf()
+    }
 
     fun getWorkouts(): Flow<List<WorkoutGroups>> {
         return flow {
-            val listOfWorkouts = mutableListOf<Workout>()
-            try {
-                oneRepApplication.assets.open(WORKOUT_FILE_NAME).bufferedReader()
-                    .use { fileContent ->
-                        var id = 1
-                        fileContent.forEachLine { lineContent ->
-                            getWorkout(id, lineContent)?.let { workout ->
-                                listOfWorkouts.add(workout)
+            if (groupedWorkOutsCache.isNotEmpty()) {
+                emit(groupedWorkOutsCache)
+            } else {
+                val listOfWorkouts = mutableListOf<Workout>()
+                try {
+                    oneRepApplication.assets.open(WORKOUT_FILE_NAME).bufferedReader()
+                        .use { fileContent ->
+                            var id = 1
+                            fileContent.forEachLine { lineContent ->
+                                getWorkout(id, lineContent)?.let { workout ->
+                                    listOfWorkouts.add(workout)
+                                }
+                                id++
                             }
-                            id++
                         }
-                    }
-                emit(listOfWorkouts.getGroupedWorkOuts())
-            } catch (ex: Exception) {
-                Log.i(TAG, "The file does not exists or the format or cannot be read.")
-                emit(emptyList())
+                    groupedWorkOutsCache = listOfWorkouts.getGroupedWorkOuts()
+                    emit(groupedWorkOutsCache)
+                } catch (ex: Exception) {
+                    Log.i(TAG, "The file does not exists or the format or cannot be read.")
+                    emit(emptyList())
+                }
             }
         }
     }

@@ -81,14 +81,13 @@ fun WorkoutListDetailPaneScreen(modifier: Modifier = Modifier) {
                     onWorkoutClick = ::onWorkoutClickShowDetail,
                 )
                 composable(route = WORKOUT_ROUTE) {
-                    Text(text = "Hi")
+                    Text(text = "Choose a workout to Start")
                 }
             }
         },
     )
     LaunchedEffect(Unit) {
-        // Initial topic ID was provided when navigating to Interests, so show its details.
-        onWorkoutClickShowDetail("Barbell Bench Press")
+        if (!listDetailNavigator.isListPaneVisible()) onWorkoutClickShowDetail("Barbell Bench Press")
     }
 }
 
