@@ -93,7 +93,9 @@ fun WorkoutScreen(
                 val groupedWorkout = remember {
                     workoutUiState.workoutGroups.firstOrNull { workout -> workout.workoutType == workoutId }
                 } ?: return@Box
-
+                val graphEntries = remember {
+                    groupedWorkout.workouts.getGraphEntries()
+                }
                 Column(
                     modifier
                         .verticalScroll(rememberScrollState())
@@ -108,9 +110,6 @@ fun WorkoutScreen(
                     }
                     Spacer(modifier = Modifier.height(5.dp))
                     Row {
-                        val graphEntries = remember {
-                            groupedWorkout.workouts.getGraphEntries()
-                        }
                         OneRepGraph(graphEntries)
                     }
                 }

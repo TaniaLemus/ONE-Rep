@@ -13,10 +13,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.navigation.NavHostController
 import com.tanishkej.onerep.ui.navigation.OneRepNavHost
+import com.tanishkej.onerep.R.string
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
@@ -37,7 +39,7 @@ fun OneRepApp(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
                     titleContentColor = MaterialTheme.colorScheme.primary,
                 ),
-                title = { Text("One Rep & Charts") }
+                title = { Text(stringResource(id = string.feature_workouts_title_bar)) }
             )
         },
     ) { padding ->

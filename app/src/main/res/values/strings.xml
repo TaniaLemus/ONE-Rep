@@ -3,4 +3,7 @@
     <string name="feature_workouts_loading">Loading workouts</string>
     <string name="feature_workout_detail_loading">Loading %s</string>
     <string name="feature_workouts_error">Error loading workouts</string>
+    <string name="feature_workouts_title_bar">One Rep &amp; Charts</string>
+    <string name="feature_workouts_card_rm_recorded">1 RM Recorded</string>
+    <string name="feature_workouts_card_lbs">LBS</string>
 </resources>

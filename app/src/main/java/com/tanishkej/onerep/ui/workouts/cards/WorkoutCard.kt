@@ -14,9 +14,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.tanishkej.onerep.data.model.WorkoutGroups
 import com.tanishkej.onerep.ui.theme.Purple80
+import com.tanishkej.onerep.R.string
 
 @Composable
 fun WorkoutCard(
@@ -52,7 +54,7 @@ fun WorkoutCard(
                 )
                 Spacer(modifier = Modifier.height(5.dp))
                 Text(
-                    "$1 RM Recorded",
+                    stringResource(id = string.feature_workouts_card_rm_recorded),
                     modifier = Modifier.fillMaxWidth((.8f)),
                 )
             }
@@ -63,7 +65,7 @@ fun WorkoutCard(
                 )
                 Spacer(modifier = Modifier.height(5.dp))
                 Text(
-                    "LBS",
+                    stringResource(id = string.feature_workouts_card_lbs),
                     modifier = Modifier.fillMaxWidth((.8f)),
                 )
             }
