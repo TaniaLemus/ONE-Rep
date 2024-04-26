@@ -46,6 +46,10 @@ As requested, I used MVI, which is MVVM-like but works with intents (States). It
    - Coroutines
 	   - Using flow to read the data as states and also to prevent the UI to get locked.
 
+## Git Flow
+
+I created my branches for different features and merged to main as I usually do on my daily basis.
+
 ## Missing Features
 
 -   Android App Links
