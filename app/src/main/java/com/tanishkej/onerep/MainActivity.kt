@@ -6,10 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
 import com.tanishkej.onerep.ui.theme.OneRepTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -20,29 +18,18 @@ class MainActivity : ComponentActivity() {
         setContent {
             OneRepTheme {
                 // A surface container using the 'background' color from the theme
+                val modifier = Modifier.fillMaxSize()
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = modifier,
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("To One Rep & Charts app.")
+                    val appState = rememberNavController()
+                    OneRepApp(appState, modifier)
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    OneRepTheme {
-        Greeting("Android")
-    }
-}
+

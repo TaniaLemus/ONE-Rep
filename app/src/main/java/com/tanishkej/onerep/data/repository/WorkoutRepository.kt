@@ -1,9 +1,9 @@
 package com.tanishkej.onerep.data.repository
 
-import com.tanishkej.onerep.data.model.Workout
+import com.tanishkej.onerep.data.model.WorkoutGroups
 import kotlinx.coroutines.flow.Flow
 
 interface WorkoutRepository {
 
-    suspend fun getWorkouts(): Flow<List<Workout>>
+    fun getWorkouts(): Flow<List<WorkoutGroups>>
 }
