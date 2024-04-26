@@ -1,6 +1,5 @@
 package com.tanishkej.onerep.ui.workouts.viewmodels
 
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tanishkej.onerep.data.repository.WorkoutRepository

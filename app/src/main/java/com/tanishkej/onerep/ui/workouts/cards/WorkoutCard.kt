@@ -16,9 +16,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.tanishkej.onerep.R.string
 import com.tanishkej.onerep.data.model.WorkoutGroups
 import com.tanishkej.onerep.ui.theme.Purple80
-import com.tanishkej.onerep.R.string
 
 @Composable
 fun WorkoutCard(

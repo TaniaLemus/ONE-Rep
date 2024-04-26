@@ -17,8 +17,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.navigation.NavHostController
-import com.tanishkej.onerep.ui.navigation.OneRepNavHost
 import com.tanishkej.onerep.R.string
+import com.tanishkej.onerep.ui.navigation.OneRepNavHost
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)

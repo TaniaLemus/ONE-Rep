@@ -4,8 +4,8 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.tanishkej.onerep.data.repository.WorkoutRepository
-import com.tanishkej.onerep.data.util.asResult
 import com.tanishkej.onerep.data.util.Result
+import com.tanishkej.onerep.data.util.asResult
 import com.tanishkej.onerep.ui.navigation.WorkoutArgs
 import com.tanishkej.onerep.ui.workouts.states.WorkoutUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
