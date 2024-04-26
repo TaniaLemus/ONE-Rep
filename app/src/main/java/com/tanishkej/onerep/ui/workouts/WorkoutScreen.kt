@@ -33,7 +33,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import com.tanishkej.onerep.data.model.WorkoutGroups
-import com.tanishkej.onerep.data.model.getGroupedWorkOuts
 
 @Composable
 internal fun WorkoutRoute(
@@ -104,7 +103,7 @@ fun WorkoutScreen(
                             Toast.LENGTH_LONG
                         ).show()
                         is WorkoutUiState.Success -> {
-                            workoutCardItems(workoutUiState.workouts.getGroupedWorkOuts(), onWorkoutClick)
+                            workoutCardItems(workoutUiState.workoutGroups, onWorkoutClick)
                         }
                     }
                     item {

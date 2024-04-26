@@ -58,7 +58,7 @@ fun WorkoutCard(
             }
             Column {
                 Text(
-                    "${workout.maxWeightInLBS}",
+                    "${workout.maxOneRep}",
                     modifier = Modifier.fillMaxWidth((.8f)),
                 )
                 Spacer(modifier = Modifier.height(5.dp))

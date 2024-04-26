@@ -3,7 +3,6 @@ package com.tanishkej.onerep.ui.workouts
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.tanishkej.onerep.data.model.Workout
 import com.tanishkej.onerep.data.repository.WorkoutRepository
 import com.tanishkej.onerep.data.util.asResult
 import com.tanishkej.onerep.data.util.Result

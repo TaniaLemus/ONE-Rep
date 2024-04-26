@@ -3,6 +3,9 @@ package com.tanishkej.onerep.data.datasource
 import android.util.Log
 import com.tanishkej.onerep.OneRepApplication
 import com.tanishkej.onerep.data.model.Workout
+import com.tanishkej.onerep.data.model.WorkoutGroups
+import com.tanishkej.onerep.data.util.WorkoutUtil.getGroupedWorkOuts
+import com.tanishkej.onerep.data.util.WorkoutUtil.getOneRep
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import java.text.DateFormat
@@ -14,9 +17,11 @@ import javax.inject.Inject
 private const val TAG = "WorkoutFileReader"
 private const val WORKOUT_FILE_NAME = "workoutData.txt"
 
-class WorkoutDataSource @Inject constructor(private val oneRepApplication: OneRepApplication) {
+class WorkoutDataSource @Inject constructor(
+    private val oneRepApplication: OneRepApplication,
+) {
 
-    fun getWorkouts(): Flow<List<Workout>> {
+    fun getWorkouts(): Flow<List<WorkoutGroups>> {
         return flow {
             val listOfWorkouts = mutableListOf<Workout>()
             try {
@@ -30,7 +35,7 @@ class WorkoutDataSource @Inject constructor(private val oneRepApplication: OneRe
                             id++
                         }
                     }
-                emit(listOfWorkouts)
+                emit(listOfWorkouts.getGroupedWorkOuts())
             } catch (ex: Exception) {
                 Log.i(TAG, "The file does not exists or the format or cannot be read.")
                 emit(emptyList())
@@ -60,7 +65,9 @@ class WorkoutDataSource @Inject constructor(private val oneRepApplication: OneRe
             reps > -1 &&
             weightInLBS > -1
         ) {
-            Workout(id, date!!, workoutType, reps, weightInLBS)
+            Workout(id, date!!, workoutType, reps, weightInLBS).apply {
+                oneRep = getOneRep()
+            }
         } else {
             Log.i(
                 TAG,
@@ -74,7 +81,7 @@ class WorkoutDataSource @Inject constructor(private val oneRepApplication: OneRe
         return try {
             valueString.toInt()
         } catch (ex: Exception) {
-            Log.i(TAG, "The value $valueString cannot be parse to a Int obj.")
+            Log.i(TAG, "The value $valueString cannot be parse to an Int obj.")
             -1
         }
     }
