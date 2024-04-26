@@ -32,7 +32,6 @@ class WorkoutDataSource @Inject constructor(
 
     fun getWorkouts(): Flow<List<WorkoutGroups>> {
         return flow {
-
             if (groupedWorkOutsCache.isNotEmpty()) {
                 emit(groupedWorkOutsCache)
             } else {

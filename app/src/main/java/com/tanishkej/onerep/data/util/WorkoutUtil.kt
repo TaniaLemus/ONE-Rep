@@ -1,6 +1,7 @@
 package com.tanishkej.onerep.data.util
 
 import android.util.Log
+import com.github.mikephil.charting.data.Entry
 import com.tanishkej.onerep.data.model.Workout
 import com.tanishkej.onerep.data.model.WorkoutGroups
 import kotlin.math.roundToInt
@@ -40,4 +41,31 @@ object WorkoutUtil {
             return 0
         }
     }
+
+    fun List<Workout>.getGraphEntries() =
+        try {
+            val filteredLiftData = this.sortedBy { it.date }
+                .fold(mutableListOf<Workout>() to Int.MIN_VALUE) { (filtered, prevWeight), workout ->
+                    if (workout.oneRep > prevWeight) {
+                        filtered.add(workout)
+                        filtered to workout.oneRep
+                    } else {
+                        filtered to prevWeight
+                    }
+                }.first
+
+            val noteRepeatedDays = filteredLiftData
+                .groupBy { it.date }
+                .mapValues { (_, workout) ->
+                    workout.maxByOrNull { it.oneRep }!!.oneRep
+                }
+            noteRepeatedDays.map { (x, y) -> Entry(x.time.toFloat(), y.toFloat()) }
+        } catch (ex: Exception) {
+            Log.e(
+                TAG,
+                "Not able to generate the list of Entries for the Graph.",
+                ex
+            )
+            listOf()
+        }
 }
