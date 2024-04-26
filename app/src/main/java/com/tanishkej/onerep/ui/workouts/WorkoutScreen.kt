@@ -2,10 +2,8 @@ package com.tanishkej.onerep.ui.workouts
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
@@ -26,7 +24,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.tanishkej.onerep.ui.components.OneRepLoadingWheel
 import com.tanishkej.onerep.ui.workouts.states.WorkoutUiState
 import com.tanishkej.onerep.R.string
-import com.tanishkej.onerep.data.model.Workout
 import com.tanishkej.onerep.ui.workouts.cards.WorkoutCard
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -35,13 +32,14 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
-import androidx.compose.ui.unit.dp
+import com.tanishkej.onerep.data.model.WorkoutGroups
+import com.tanishkej.onerep.data.model.getGroupedWorkOuts
 
 @Composable
 internal fun WorkoutRoute(
     showBackButton: Boolean,
     onBackClick: () -> Unit,
-    onWorkoutClick: (Int) -> Unit,
+    onWorkoutClick: (String) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: WorkoutViewModel = hiltViewModel(),
 ) {
@@ -63,7 +61,7 @@ fun WorkoutScreen(
     modifier: Modifier,
     showBackButton: Boolean,
     onBackClick: () -> Unit,
-    onWorkoutClick: (Int) -> Unit
+    onWorkoutClick: (String) -> Unit
 ) {
     val state = rememberLazyListState()
     val context = LocalContext.current
@@ -85,7 +83,8 @@ fun WorkoutScreen(
                 LazyColumn(
                     state = state,
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
                         .padding(it),
                 ) {
                     item {
@@ -104,9 +103,8 @@ fun WorkoutScreen(
                             string.feature_workouts_error,
                             Toast.LENGTH_LONG
                         ).show()
-
                         is WorkoutUiState.Success -> {
-                            workoutCardItems(workoutUiState.workouts, onWorkoutClick)
+                            workoutCardItems(workoutUiState.workouts.getGroupedWorkOuts(), onWorkoutClick)
                         }
                     }
                     item {
@@ -119,17 +117,19 @@ fun WorkoutScreen(
 }
 
 fun LazyListScope.workoutCardItems(
-    items: List<Workout>,
-    onWorkoutClick: (Int) -> Unit,
+    items: List<WorkoutGroups>,
+    onWorkoutClick: (String) -> Unit,
     itemModifier: Modifier = Modifier
-) = items(
-    items = items,
-    key = { it.id },
-    itemContent = { workoutContent ->
-        WorkoutCard(
-            onWorkoutClick = onWorkoutClick,
-            workoutContent,
-            modifier = itemModifier
-        )
-    },
-)
+) {
+    items(
+        items = items,
+        key = { it.workoutType },
+        itemContent = { groupedWorkout ->
+            WorkoutCard(
+                onWorkoutClick = onWorkoutClick,
+                groupedWorkout,
+                modifier = itemModifier
+            )
+        },
+    )
+}

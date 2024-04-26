@@ -18,7 +18,7 @@ internal class WorkoutArgs(val workoutId: String) {
     constructor(savedStateHandle: SavedStateHandle) :
             this(URLDecoder.decode(checkNotNull(savedStateHandle[WORKOUT_ID_ARG]), URL_CHARACTER_ENCODING))
 }
-fun NavController.navigateToWorkOut(workoutId: Int, navOptions: NavOptionsBuilder.() -> Unit = {}) {
+fun NavController.navigateToWorkOut(workoutId: String, navOptions: NavOptionsBuilder.() -> Unit = {}) {
     val newRoute = "$WORKOUT_ROUTE/$workoutId"
     navigate(newRoute) {
         navOptions()
@@ -28,7 +28,7 @@ fun NavController.navigateToWorkOut(workoutId: Int, navOptions: NavOptionsBuilde
 fun NavGraphBuilder.workoutScreen(
     showBackButton: Boolean,
     onBackClick: () -> Unit,
-    onWorkoutClick: (Int) -> Unit,
+    onWorkoutClick: (String) -> Unit,
 ) {
     composable(
         route = "workout_route/{$WORKOUT_ID_ARG}",

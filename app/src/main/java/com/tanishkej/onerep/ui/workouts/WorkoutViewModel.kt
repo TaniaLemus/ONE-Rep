@@ -28,7 +28,7 @@ class WorkoutViewModel @Inject constructor(
     /***
      * Not implemented yet, but we could use Universal Linking Nav to go straight to a Workout.
      */
-    val workoutId = 1//workoutArgs.workoutId
+    val workoutId = "Back Squat"//workoutArgs.workoutId
 
     val workoutUiState: StateFlow<WorkoutUiState> = workoutsUiState(
         workoutRepository

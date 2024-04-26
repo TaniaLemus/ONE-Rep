@@ -54,7 +54,7 @@ fun Workouts(modifier: Modifier = Modifier) {
         listDetailNavigator.navigateBack()
     }
     val nestedNavController = rememberNavController()
-    fun onWorkoutClickShowDetail(workoutId: Int) {
+    fun onWorkoutClickShowDetail(workoutId: String) {
         nestedNavController.navigateToWorkOut(workoutId) {
             //popUpTo(DETAIL_PANE_NAVHOST_ROUTE)
         }

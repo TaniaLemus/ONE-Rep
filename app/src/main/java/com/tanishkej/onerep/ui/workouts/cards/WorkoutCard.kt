@@ -15,19 +15,19 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.tanishkej.onerep.data.model.Workout
+import com.tanishkej.onerep.data.model.WorkoutGroups
 import com.tanishkej.onerep.ui.theme.Purple80
 
 @Composable
 fun WorkoutCard(
-    onWorkoutClick: (Int) -> Unit,
-    workout: Workout,
+    onWorkoutClick: (String) -> Unit,
+    workout: WorkoutGroups,
     modifier: Modifier = Modifier
 ) {
     Spacer(modifier = Modifier.height(16.dp))
     Card(
         onClick = {
-            onWorkoutClick(workout.id)
+            onWorkoutClick(workout.workoutType)
         },
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
@@ -44,30 +44,28 @@ fun WorkoutCard(
                 vertical = 16.dp,
             )
     ) {
-        Column {
-            Row {
-                Column {
-                    Text(
-                        workout.workoutType,
-                        modifier = Modifier.fillMaxWidth((.8f)),
-                    )
-                    Spacer(modifier = Modifier.height(5.dp))
-                    Text(
-                        "$1 RM Recorded",
-                        modifier = Modifier.fillMaxWidth((.8f)),
-                    )
-                }
-                Column {
-                    Text(
-                        "${workout.weightInLBS}",
-                        modifier = Modifier.fillMaxWidth((.8f)),
-                    )
-                    Spacer(modifier = Modifier.height(5.dp))
-                    Text(
-                        "LBS",
-                        modifier = Modifier.fillMaxWidth((.8f)),
-                    )
-                }
+        Row {
+            Column {
+                Text(
+                    workout.workoutType,
+                    modifier = Modifier.fillMaxWidth((.8f)),
+                )
+                Spacer(modifier = Modifier.height(5.dp))
+                Text(
+                    "$1 RM Recorded",
+                    modifier = Modifier.fillMaxWidth((.8f)),
+                )
+            }
+            Column {
+                Text(
+                    "${workout.maxWeightInLBS}",
+                    modifier = Modifier.fillMaxWidth((.8f)),
+                )
+                Spacer(modifier = Modifier.height(5.dp))
+                Text(
+                    "LBS",
+                    modifier = Modifier.fillMaxWidth((.8f)),
+                )
             }
         }
     }
