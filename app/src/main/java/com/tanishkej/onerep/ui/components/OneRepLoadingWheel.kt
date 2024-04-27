@@ -39,7 +39,7 @@ import kotlinx.coroutines.launch
 @Composable
 fun OneRepLoadingWheel(
     contentDesc: String,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     val infiniteTransition = rememberInfiniteTransition(label = "wheel transition")
 
@@ -119,7 +119,7 @@ fun OneRepLoadingWheel(
 @Composable
 fun OneRepOverlayLoadingWheel(
     contentDesc: String,
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     Surface(
         shape = RoundedCornerShape(60.dp),

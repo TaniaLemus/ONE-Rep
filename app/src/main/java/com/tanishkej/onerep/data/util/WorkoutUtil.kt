@@ -25,12 +25,13 @@ object WorkoutUtil {
     }
 
     /***
-     * Will calculate max One rep for this workout.
+     * Will calculate max One rep for this workout using the Matt Brzycki Formula..
      * Will return 0, in case of an error.
      * Also it will round it to Int with the default rules, >.5=UP, <.5=Down
      */
     fun Workout.getOneRep(): Int {
         return try {
+            if (reps == 0) return 0
             (weightInLBS / (1.0278 - 0.0278 * reps)).roundToInt()
         } catch (ex: Exception) {
             Log.e(
@@ -44,17 +45,18 @@ object WorkoutUtil {
 
     fun List<Workout>.getGraphEntries() =
         try {
-            val filteredLiftData = this.sortedBy { it.date }
-                .fold(mutableListOf<Workout>() to Int.MIN_VALUE) { (filtered, prevWeight), workout ->
-                    if (workout.oneRep > prevWeight) {
+            val filteredWorkoutData = this.sortedBy { it.date }
+                .fold(mutableListOf<Workout>() to Int.MIN_VALUE)
+                { (filtered, prevOneRep), workout ->
+                    if (workout.oneRep > prevOneRep) {
                         filtered.add(workout)
                         filtered to workout.oneRep
                     } else {
-                        filtered to prevWeight
+                        filtered to prevOneRep
                     }
                 }.first
 
-            val noteRepeatedDays = filteredLiftData
+            val noteRepeatedDays = filteredWorkoutData
                 .groupBy { it.date }
                 .mapValues { (_, workout) ->
                     workout.maxByOrNull { it.oneRep }!!.oneRep

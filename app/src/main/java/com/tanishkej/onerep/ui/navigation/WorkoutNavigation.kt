@@ -28,7 +28,7 @@ fun NavController.navigateToWorkOut(workoutId: String, navOptions: NavOptionsBui
 fun NavGraphBuilder.workoutScreen(
     showBackButton: Boolean,
     onBackClick: () -> Unit,
-    onWorkoutClick: (String) -> Unit,
+    onWorkoutClick: (String) -> Unit
 ) {
     composable(
         route = "workout_route/{$WORKOUT_ID_ARG}",

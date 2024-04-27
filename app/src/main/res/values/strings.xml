@@ -6,4 +6,5 @@
     <string name="feature_workouts_title_bar">One Rep &amp; Charts</string>
     <string name="feature_workouts_card_rm_recorded">1 RM Recorded</string>
     <string name="feature_workouts_card_lbs">LBS</string>
+    <string name="feature_workouts_list_pane_placeholder">Choose a workout to Start</string>
 </resources>
