@@ -58,3 +58,8 @@ I created my branches for different features and merged to main as I usually do 
     -   I created a single module (`App`), but internally structured the different folders for future modularization if needed.
 -   Synchronization
     -   Since there aren't many data sources, synchronization isn't necessary.
+
+
+## Tests and UI Testing
+
+I plan to add tests during the weekend. Currently, I have some releases to handle at my current company, and I cannot delay them.
