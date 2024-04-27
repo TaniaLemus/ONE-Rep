@@ -25,12 +25,13 @@ object WorkoutUtil {
     }
 
     /***
-     * Will calculate max One rep for this workout.
+     * Will calculate max One rep for this workout using the Matt Brzycki Formula..
      * Will return 0, in case of an error.
      * Also it will round it to Int with the default rules, >.5=UP, <.5=Down
      */
     fun Workout.getOneRep(): Int {
         return try {
+            if (reps == 0) return 0
             (weightInLBS / (1.0278 - 0.0278 * reps)).roundToInt()
         } catch (ex: Exception) {
             Log.e(

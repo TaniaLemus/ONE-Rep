@@ -11,6 +11,7 @@ import androidx.compose.material3.adaptive.navigation.rememberListDetailPaneScaf
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavType
@@ -23,6 +24,7 @@ import com.tanishkej.onerep.ui.navigation.WORKOUT_ROUTE
 import com.tanishkej.onerep.ui.navigation.navigateToWorkOut
 import com.tanishkej.onerep.ui.navigation.workoutScreen
 import com.tanishkej.onerep.ui.theme.OneRepTheme
+import com.tanishkej.onerep.R.string
 
 private const val DETAIL_PANE_NAV_HOST_ROUTE = "detail_pane_route"
 
@@ -80,7 +82,7 @@ fun WorkoutListDetailPaneScreen(modifier: Modifier = Modifier) {
                     onWorkoutClick = ::onWorkoutClickShowDetail,
                 )
                 composable(route = WORKOUT_ROUTE) {
-                    Text(text = "Choose a workout to Start")
+                    Text(text = stringResource(id = string.feature_workouts_list_pane_placeholder))
                 }
             }
         },
