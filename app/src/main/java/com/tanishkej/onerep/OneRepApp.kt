@@ -24,7 +24,7 @@ import com.tanishkej.onerep.ui.navigation.OneRepNavHost
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 fun OneRepApp(
     navHostController: NavHostController,
-    modifier: Modifier,
+    modifier: Modifier
 ) {
     Scaffold(
         modifier = modifier.semantics {

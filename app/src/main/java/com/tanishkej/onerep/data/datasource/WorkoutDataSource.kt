@@ -20,7 +20,7 @@ private const val TAG = "WorkoutFileReader"
 private const val WORKOUT_FILE_NAME = "workoutData.txt"
 
 class WorkoutDataSource @Inject constructor(
-    private val oneRepApplication: OneRepApplication,
+    private val oneRepApplication: OneRepApplication
 ) {
     /***
      * Since the asset is static store the data here, so we do not need to reload it all the time.

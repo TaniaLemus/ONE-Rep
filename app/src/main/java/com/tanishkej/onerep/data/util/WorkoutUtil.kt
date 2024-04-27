@@ -44,17 +44,18 @@ object WorkoutUtil {
 
     fun List<Workout>.getGraphEntries() =
         try {
-            val filteredLiftData = this.sortedBy { it.date }
-                .fold(mutableListOf<Workout>() to Int.MIN_VALUE) { (filtered, prevWeight), workout ->
-                    if (workout.oneRep > prevWeight) {
+            val filteredWorkoutData = this.sortedBy { it.date }
+                .fold(mutableListOf<Workout>() to Int.MIN_VALUE)
+                { (filtered, prevOneRep), workout ->
+                    if (workout.oneRep > prevOneRep) {
                         filtered.add(workout)
                         filtered to workout.oneRep
                     } else {
-                        filtered to prevWeight
+                        filtered to prevOneRep
                     }
                 }.first
 
-            val noteRepeatedDays = filteredLiftData
+            val noteRepeatedDays = filteredWorkoutData
                 .groupBy { it.date }
                 .mapValues { (_, workout) ->
                     workout.maxByOrNull { it.oneRep }!!.oneRep

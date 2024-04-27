@@ -34,7 +34,7 @@ internal fun WorkoutRoute(
     onBackClick: () -> Unit,
     onWorkoutClick: (String) -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: WorkoutViewModel = hiltViewModel(),
+    viewModel: WorkoutViewModel = hiltViewModel()
 ) {
     val workoutsUiState: WorkoutUiState by viewModel.workoutUiState.collectAsStateWithLifecycle()
 

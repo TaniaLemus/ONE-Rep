@@ -32,7 +32,7 @@ import com.tanishkej.onerep.ui.workouts.viewmodels.WorkoutListViewModel
 internal fun WorkoutListRoute(
     onWorkoutClick: (String) -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: WorkoutListViewModel = hiltViewModel(),
+    viewModel: WorkoutListViewModel = hiltViewModel()
 ) {
     val workoutsUiState: WorkoutListUiState by viewModel.workoutUiState.collectAsStateWithLifecycle()
 
