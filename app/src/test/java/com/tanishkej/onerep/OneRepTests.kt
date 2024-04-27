@@ -53,7 +53,7 @@ class OneRepTests {
      * 100lb trying to lift it but doing 0 reps, should be 0
      */
     @Test
-    fun oneRep_1by0_Test_isCorrect() {
+    fun oneRep_100by0_Test_isCorrect() {
         assertWorkOneRep(100, 0, 0)
     }
 
